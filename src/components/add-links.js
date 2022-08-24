@@ -6,7 +6,8 @@ function Add_links() {
     const [name, setName] = useState("")
     const [link, setLink] = useState("")
     const [description, setDescription] = useState("")
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
         const options = {
             url: 'https://sticky-note-me.herokuapp.com/stickynote/',
             method: 'POST',
@@ -24,14 +25,16 @@ function Add_links() {
         axios(options)
             .then(response => {
                 alert("Success!");
-                console.log(response);
+                setName("")
+                setLink("")
+                setDescription("")
             })
             .catch(err => alert(err));
     }
     return (
         <div>
             <div>
-                <Form onChange={handleSubmit}>
+                <Form onSubmit={handleSubmit}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Link Name</Form.Label>
                         <Form.Control type="text" placeholder="Link Name" value={name} onChange={e => setName(e.target.value)} />
