@@ -1,0 +1,17 @@
+.container1 {
+  width: 35%;
+  margin-top: 20px;
+}
+.container2 {
+  box-shadow: 5px 5px 5px #e7e7e7, -5px -5px 5px #e7e7e7;
+  padding: 10px;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.switchButin {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+}
