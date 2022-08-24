@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import "./get_link.scss"
 import { Button } from 'react-bootstrap';
+import Add_links from './add-links';
 
 function Get_link(props) {
     const [list, setList] = useState([]);
-    const [copy, setCopy] = useState(false)
+    const [error, setError] = useState();
+    const [current, setCurrent] = useState(1)
     const ListAllVehicles = () => {
         const options = {
             url: `https://sticky-note-me.herokuapp.com/stickynote/`,
@@ -22,19 +24,29 @@ function Get_link(props) {
             })
             .catch((err) => {
                 console.log("Error: ", err);
+                setError(err.message);
             })
     };
     useEffect(() => {
         ListAllVehicles();
     }, []);
 
+    const currentDisplay = (index) => {
+        setCurrent(index);
+    }
+
     return (
         <div className="container1">
             <div className="switchButin">
-                <Button>Notes</Button>
-                <Button>Add Notes</Button>
+                <Button onClick={() => {
+                    currentDisplay(1)
+                }}>Add Notes</Button>
+                <Button onClick={() => {
+                    currentDisplay(0)
+                }}>Notes</Button>
+
             </div>
-            <div className="container2">
+            {current === 0 ? <div className="container2">
                 {
                     list.map((item, index) => {
                         return (
@@ -51,8 +63,8 @@ function Get_link(props) {
                                 <div className="copy">
                                     <Button variant="success" size="sm"
                                         onClick={() => {
-                                            setCopy(!copy)
-                                            navigator.clipboard.writeText(item.name)
+                                            navigator.clipboard.writeText(item.weblink)
+                                            alert("Link Copied!");
                                         }}>Copy</Button>
                                     <Button variant="success" size="sm">Details</Button>
                                 </div>
@@ -60,7 +72,12 @@ function Get_link(props) {
                         )
                     })
                 }
-            </div>
+                <p>{error}</p>
+            </div> : <div className="container2 padMe">
+                <Add_links />
+            </div>}
+
+
         </div>
     );
 }
