@@ -5,6 +5,7 @@ import { Button } from 'react-bootstrap';
 
 function Get_link(props) {
     const [list, setList] = useState([]);
+    const [copy, setCopy] = useState(false)
     const ListAllVehicles = () => {
         const options = {
             url: `https://sticky-note-me.herokuapp.com/stickynote/`,
@@ -47,8 +48,12 @@ function Get_link(props) {
                                         <p>{item.date}</p>
                                     </div>
                                 </div>
-                                <div>
-                                    <Button variant="success" size="sm">Copy</Button>
+                                <div className="copy">
+                                    <Button variant="success" size="sm"
+                                        onClick={() => {
+                                            setCopy(!copy)
+                                            navigator.clipboard.writeText(item.name)
+                                        }}>Copy</Button>
                                     <Button variant="success" size="sm">Details</Button>
                                 </div>
                             </div>
