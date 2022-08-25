@@ -71,7 +71,7 @@ function Get_link(props) {
                                     <Button variant="success" size="sm"
                                         onClick={() => {
                                             navigator.clipboard.writeText(item.weblink)
-                                            alert("Link Copied!");
+                                            alert("Link Copied! " + item.weblink);
                                         }}>Copy</Button>
                                     <Button variant="danger" size="sm" onClick={() => {
                                         axios.delete(`https://sticky-note-me.herokuapp.com/stickynote/${item.id}`, {
