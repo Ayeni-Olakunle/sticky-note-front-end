@@ -40,13 +40,13 @@ function Get_link(props) {
             <div className="switchButin">
                 <Button onClick={() => {
                     currentDisplay(1)
-                }}>Add Notes</Button>
+                }}>Notes</Button>
                 <Button onClick={() => {
                     currentDisplay(0)
-                }}>Notes</Button>
+                }}>Add Notes</Button>
 
             </div>
-            {current === 0 ? <div className="container2">
+            {current === 1 ? <div className="container2">
                 {
                     list.map((item, index) => {
                         return (
@@ -66,6 +66,15 @@ function Get_link(props) {
                                             navigator.clipboard.writeText(item.weblink)
                                             alert("Link Copied!");
                                         }}>Copy</Button>
+                                    <Button variant="danger" size="sm" onClick={() => {
+                                        axios.delete(`https://sticky-note-me.herokuapp.com/stickynote/${item.id}`, {
+                                        })
+                                            .then(response => {
+                                                alert("Item Deleted Successfully!")
+                                                window.location.reload()
+                                            })
+                                            .catch(error => alert("Error: " + error.message))
+                                    }}>Delete</Button>
                                     <Button variant="success" size="sm">Details</Button>
                                 </div>
                             </div>

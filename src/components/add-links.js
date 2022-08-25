@@ -25,9 +25,7 @@ function Add_links() {
         axios(options)
             .then(response => {
                 alert("Success!");
-                setName("")
-                setLink("")
-                setDescription("")
+                window.location.reload()
             })
             .catch(err => alert(err));
     }
