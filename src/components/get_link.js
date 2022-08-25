@@ -57,6 +57,7 @@ function Get_link(props) {
                     list.map((item, index) => {
                         return (
                             <div key={item.id} className="holdInfo">
+                                <Edit_Link showMe={show} closeMe={handleClose} />
                                 <div className="info">
                                     <div>
                                         <h5>{item.name}</h5>
@@ -91,7 +92,6 @@ function Get_link(props) {
             </div> : <div className="container2 padMe">
                 <Add_links />
             </div>}
-            <Edit_Link showMe={show} closeMe={handleClose} />
         </div>
     );
 }

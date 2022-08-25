@@ -3,9 +3,11 @@ import axios from 'axios';
 import { Form, Button, Modal } from 'react-bootstrap';
 
 function Edit_Link(props) {
-    const [name, setName] = useState("")
-    const [link, setLink] = useState("")
-    const [description, setDescription] = useState("")
+    const [name, setName] = useState(props.name)
+    const [link, setLink] = useState(props.link)
+    const [description, setDescription] = useState(props.description)
+    const [createDate, setCreateDate] = useState(props.date)
+    const [createTime, setCreateTime] = useState(props.time)
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -52,7 +54,7 @@ function Edit_Link(props) {
 
                             <Form.Group className="mb-3" controlId="formBasicPassword">
                                 <Form.Label>Create Date</Form.Label>
-                                <Form.Control type="date" placeholder="Link" value={link} disabled />
+                                <Form.Control type="date" placeholder="Link" value={createDate} disabled />
                             </Form.Group>
 
                             <Form.Group className="mb-3" controlId="formBasicPassword">
