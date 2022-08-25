@@ -3,11 +3,17 @@ import axios from "axios";
 import "./get_link.scss"
 import { Button } from 'react-bootstrap';
 import Add_links from './add-links';
+import Edit_Link from './edit_link';
 
 function Get_link(props) {
     const [list, setList] = useState([]);
     const [error, setError] = useState();
     const [current, setCurrent] = useState(1)
+    const [show, setShow] = useState(false);
+    const handleShow = () => setShow(true);
+    const handleClose = () => setShow(false);
+
+
     const ListAllVehicles = () => {
         const options = {
             url: `https://sticky-note-me.herokuapp.com/stickynote/`,
@@ -75,7 +81,7 @@ function Get_link(props) {
                                             })
                                             .catch(error => alert("Error: " + error.message))
                                     }}>Delete</Button>
-                                    <Button variant="success" size="sm">Details</Button>
+                                    <Button variant="success" size="sm" onClick={handleShow}>Details</Button>
                                 </div>
                             </div>
                         )
@@ -85,8 +91,7 @@ function Get_link(props) {
             </div> : <div className="container2 padMe">
                 <Add_links />
             </div>}
-
-
+            <Edit_Link showMe={show} closeMe={handleClose} />
         </div>
     );
 }
