@@ -50,6 +50,16 @@ function Edit_Link(props) {
                                 <Form.Control type="text" placeholder="Link" value={link} onChange={e => setLink(e.target.value)} />
                             </Form.Group>
 
+                            <Form.Group className="mb-3" controlId="formBasicPassword">
+                                <Form.Label>Create Date</Form.Label>
+                                <Form.Control type="date" placeholder="Link" value={link} disabled />
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="formBasicPassword">
+                                <Form.Label>Create Time</Form.Label>
+                                <Form.Control type="time" placeholder="Link" value={link} disabled />
+                            </Form.Group>
+
                             <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                                 <Form.Label>Description</Form.Label>
                                 <Form.Control as="textarea" rows={3} value={description} onChange={e => setDescription(e.target.value)} />
