@@ -71,6 +71,7 @@ function Get_link(props) {
                                     <Button variant="success" size="sm"
                                         onClick={() => {
                                             navigator.clipboard.writeText(item.weblink)
+                                            window.clipboardData.setData("Text", item.weblink)
                                             alert("Link Copied! " + item.weblink);
                                         }}>Copy</Button>
                                     <Button variant="danger" size="sm" onClick={() => {
@@ -91,8 +92,9 @@ function Get_link(props) {
                 <p>{error}</p>
             </div> : <div className="container2 padMe">
                 <Add_links />
-            </div>}
-        </div>
+            </div>
+            }
+        </div >
     );
 }
 
