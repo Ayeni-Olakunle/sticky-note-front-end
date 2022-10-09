@@ -9,15 +9,15 @@ function Add_links() {
     const handleSubmit = (e) => {
         e.preventDefault();
         const options = {
-            url: 'https://sticky-note-me.herokuapp.com/stickynote/',
+            url: 'https://eager-pike-tie.cyclic.app/api/notes',
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json;charset=UTF-8'
             },
             data: {
-                name: name,
-                weblink: link,
+                linkName: name,
+                link: link,
                 description: description,
             }
         };

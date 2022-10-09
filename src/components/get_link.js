@@ -16,7 +16,7 @@ function Get_link(props) {
 
     const ListAllVehicles = () => {
         const options = {
-            url: `https://sticky-note-me.herokuapp.com/stickynote/`,
+            url: `https://eager-pike-tie.cyclic.app/api/notes/`,
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -27,6 +27,7 @@ function Get_link(props) {
             .get(options.url, { headers: { ...options.headers } })
             .then((response) => {
                 setList(response.data);
+                console.log(response);
             })
             .catch((err) => {
                 console.log("Error: ", err);
@@ -56,25 +57,25 @@ function Get_link(props) {
                 {
                     list.map((item, index) => {
                         return (
-                            <div key={item.id} className="holdInfo">
+                            <div key={item._id} className="holdInfo">
                                 <Edit_Link showMe={show} closeMe={handleClose} />
                                 <div className="info">
                                     <div>
-                                        <h5>{item.name}</h5>
+                                        <h5>{item.linkName}</h5>
                                         <p>{item.description}</p>
                                     </div>
                                     <div>
-                                        <p>{item.date}</p>
+                                        <p>{item.updatedAt}</p>
                                     </div>
                                 </div>
                                 <div className="copy">
                                     <Button variant="success" size="sm"
                                         onClick={() => {
-                                            navigator.clipboard.writeText(item.weblink)
-                                            window.clipboardData.setData("Text", item.weblink)
+                                            navigator.clipboard.writeText(item.link)
+                                            window.clipboardData.setData("Text", item.link)
                                         }}>Copy</Button>
                                     <Button variant="danger" size="sm" onClick={() => {
-                                        axios.delete(`https://sticky-note-me.herokuapp.com/stickynote/${item.id}`, {
+                                        axios.delete(`https://eager-pike-tie.cyclic.app/api/notes/${item._id}`, {
                                         })
                                             .then(response => {
                                                 alert("Item Deleted Successfully!")
